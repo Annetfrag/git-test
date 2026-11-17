@@ -1,5 +1,5 @@
 import random
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 15,15]
 is_game_over=False
 
 while not is_game_over:
