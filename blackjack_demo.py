@@ -3,7 +3,7 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 is_game_over=False
 
 while not is_game_over:
-    myHand=[]
+    usrHand=[]
     botHand=[]
     
     def deal_card():
@@ -11,9 +11,9 @@ while not is_game_over:
     card=deal_card()
 
     for _ in range(2):
-        myHand.append(deal_card())
+        usrHand.append(deal_card())
         botHand.append(deal_card())
-    print(f"My hand {myHand}")
+    print(f"Player's hand {usrHand}")
     print(f"Bot hand {botHand[0]}")
     
     def calculate_score(cards):
@@ -30,10 +30,10 @@ while not is_game_over:
             return sum(cards)
         else:
             return sum(cards)
-    my_score=calculate_score(myHand)
-    print(f"My score: {my_score}")
+    usr_score=calculate_score(usrHand)
+    print(f"My score: {usr_score}")
     
-    if my_score==0 or my_score==21:
+    if usr_score==0 or usr_score==21:
         is_game_over=True
 
     def new_card(hands):
@@ -59,10 +59,10 @@ while not is_game_over:
                 continue
         return calculate_score(hands)
 
-    my_score=new_card(myHand)
-    print(f"My new score: {my_score}")
+    usr_score=new_card(usrHand)
+    print(f"My new score: {usr_score}")
     
-    if my_score==0 or my_score==21:
+    if usr_score==0 or usr_score==21:
         is_game_over=True
     
     bot_score=calculate_score(botHand)
@@ -76,31 +76,29 @@ while not is_game_over:
         bot_score=calculate_score(botHand)
     print(f"Bot hand: {botHand}, bot score: {calculate_score(botHand)}")
     
-    print(f"My score {my_score} - Bot score {bot_score}")
+    print(f"My score {usr_score} - Bot score {bot_score}")
     
     if bot_score==0:
         is_game_over=True
     
-    def compare(my_score, bot_score):
-        if my_score==bot_score:
+    def compare(usr_score, bot_score):
+        if usr_score==bot_score:
             return '1:1'
-        if my_score==0:
-            return 'User! 2 card blackjack'
+        if usr_score==0:
+            return 'User wins with 2 card blackjack'
         if bot_score==0:
-            return 'Bot! 2 card blackjack'
-        if my_score==21:
-            return 'User! Blackjack'
+            return 'Bot wins with 2 card blackjack'
+        if usr_score==21:
+            return 'User wins with blackjack'
         if bot_score==21:
-            return 'Bot! Blackjack'
-        if my_score<=21 and my_score>bot_score:
-            return 'User! Higher score'
-        if my_score>21:
-            return 'User! Busted'
+            return 'Bot wins with blackjack'
+        if usr_score<=21 and usr_score>bot_score:
+            return 'User wins with higher score'
+        if usr_score>21:
+            return 'User lost with more than 21'
         if bot_score>21:
             return 'User wins. Bot more than 21'
-        return 'Bot! Higher score'
-    find_winner=compare(my_score, bot_score)
+        return 'Bot wins with higher score'
+    find_winner=compare(usr_score, bot_score)
     print(find_winner)
     is_game_over=True
-    
-    
